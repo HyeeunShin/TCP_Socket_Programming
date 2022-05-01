@@ -66,23 +66,28 @@ decRecMsg = recvMsg.decode("utf-8")
 # print("Server) receive msg: " + decRecMsg)  #test
 
 order = decRecMsg.split()
-if len(order) < 3:
-    f = open(str(order[1]), 'r')
-    if order[0] == "get":
-        contents = f.readlines()
-        content = ""
-        for i in contents:
-            content += i
-        get(connectionSocket)
-    if order[0] == "head":
-        head(connectionSocket)
-if len(order) > 2:
-    if order[0] == "put":
-        put(connectionSocket, str(order[1]), order[2])
-    if order[0] == "post":
-        post(connectionSocket, order[1], order[2])
 
-else:
+try:
+    if len(order) < 3:
+        f = open(str(order[1]), 'r')
+        if order[0] == "get":
+            contents = f.readlines()
+            content = ""
+            for i in contents:
+                content += i
+            get(connectionSocket)
+        if order[0] == "head":
+            head(connectionSocket)
+    if len(order) > 2:
+        if order[0] == "put":
+            put(connectionSocket, str(order[1]), order[2])
+        if order[0] == "post":
+            post(connectionSocket, order[1], order[2])
+
+    else:
+        response = "HTTP/1.1 404 NOT FOUND"
+        connectionSocket.send(response.encode('utf-8'))
+except:
     response = "HTTP/1.1 404 NOT FOUND"
     connectionSocket.send(response.encode('utf-8'))
 
