@@ -11,7 +11,7 @@ print("Client) 연결되었습니다")
 inputMsg = input("Request: ")
 clientSocket.send(inputMsg.encode("utf-8"))
 
-print("request를 전송했습니다.")
+print("Client) request를 전송했습니다.")
 data = clientSocket.recv(1024)
 
 print(data.decode("utf-8"))
