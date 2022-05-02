@@ -41,7 +41,7 @@ readme
 response = "\nHTTP/1.1 {header[0]} {header[1]}\n1Date: {date}\nHost: {url}\n Content-Type: text/html\n"
 
  - 200 ok : 정상 실행
- - 
+ 
  - 999 Command NOT FOUND : 잘못된 명령어를 입력했을 경우
   "HTTP/1.1 999 Command NOT FOUND (입력된 명령어는 존재하지 않음)"
 
