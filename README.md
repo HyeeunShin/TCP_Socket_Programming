@@ -9,7 +9,6 @@ readme
  -from datetime import datetime
 
 2. Files
-
 -tcpClient.py 
  클라이언트 socket을 생성 후 서버에 요청하여 돌아오는 data를 출력한다.
 
@@ -18,8 +17,6 @@ readme
 
 
 3. Execute
-
-tcpServer.py 실행 화면 
  1) tcpServer.py, tcpClient.py 실행
 
  2) tcpClient쪽에서 명령어 입력
@@ -39,10 +36,12 @@ tcpServer.py 실행 화면
  -close
 
 4. 출력 메시지 코드
+
 <기본 형식>
 response = "\nHTTP/1.1 {header[0]} {header[1]}\n1Date: {date}\nHost: {url}\n Content-Type: text/html\n"
 
  - 200 ok : 정상 실행
+ - 
  - 999 Command NOT FOUND : 잘못된 명령어를 입력했을 경우
   "HTTP/1.1 999 Command NOT FOUND (입력된 명령어는 존재하지 않음)"
 
