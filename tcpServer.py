@@ -88,24 +88,24 @@ response = "\nHTTP/1.1 {header[0]} {header[1]}\n1Date: {date}\nHost: {url}\n" \
            "Content-Type: text/html\n"
 cmdList = ["get", "head", "put", "post", "close"]
 
-serverSocket = socket(AF_INET, SOCK_STREAM)
+serverSocket = socket(AF_INET, SOCK_STREAM)     #server 소켓 생성
 serverSocket.bind((host, port))
 serverSocket.listen(1)
 print("------------Server) 대기중------------")
 
 connectionSocket, addr = serverSocket.accept()
 
-recvMsg = connectionSocket.recv(1024)
+recvMsg = connectionSocket.recv(1024)       #Client로부터 request 받기
 decRecMsg = recvMsg.decode("utf-8")
 
-order = decRecMsg.split()
+order = decRecMsg.split()   #입력된 메시지를 공백을 기준으로 split하여 리스트로 저장
 try:
     if order[0] not in cmdList:     #명령어가 아닌 다른 단어가 입력되었을 경우
         response = "\nHTTP/1.1 999 Command NOT FOUND\n(입력된 명령어는 존재하지 않음)" #999 에러발생
         connectionSocket.send(response.encode('utf-8'))
         serverSocket.close()
     else:
-        if order[0] == "close":
+        if order[0] == "close":     #close 입력시 소켓 종료
             serverSocket.close()
             print("Server) Good Bye")
         elif order[0] == "get":
